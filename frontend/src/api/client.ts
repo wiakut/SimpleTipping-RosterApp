@@ -1,6 +1,7 @@
 import axios from 'axios';
 import type {
   Employee,
+  EmployeeCreate,
   Shift,
   ShiftCreate,
   TipEntry,
@@ -14,6 +15,11 @@ const api = axios.create({
 
 export const employeesApi = {
   getAll: () => api.get<Employee[]>('/employees').then((r) => r.data),
+  create: (data: EmployeeCreate) =>
+    api.post<Employee>('/employees', data).then((r) => r.data),
+  update: (id: number, data: EmployeeCreate) =>
+    api.put<Employee>(`/employees/${id}`, data).then((r) => r.data),
+  delete: (id: number) => api.delete(`/employees/${id}`),
 };
 
 export const shiftsApi = {

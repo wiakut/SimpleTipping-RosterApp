@@ -1,6 +1,0 @@
-@TippingApp.Api_HostAddress = http://localhost:5286
-
-GET {{TippingApp.Api_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

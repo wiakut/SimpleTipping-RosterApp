@@ -1,6 +1,6 @@
 using FluentAssertions;
-using TippingApp.Api.Models;
-using TippingApp.Api.Services;
+using TippingApp.Application.Common;
+using TippingApp.Domain.Entities;
 
 namespace TippingApp.Tests;
 
@@ -18,10 +18,9 @@ public class WeeklyHoursCalculationTests
     [Fact]
     public void StandardShift_8Hours()
     {
-        var service = CreateService();
         var shifts = new[] { MakeShift(9, 0, 17, 0) };
 
-        var hours = service.CalculateHoursForShifts(shifts);
+        var hours = TipCalculator.CalculateHoursForShifts(shifts);
 
         hours.Should().Be(8m);
     }
@@ -29,10 +28,9 @@ public class WeeklyHoursCalculationTests
     [Fact]
     public void ShortShift_4AndHalfHours()
     {
-        var service = CreateService();
         var shifts = new[] { MakeShift(10, 0, 14, 30) };
 
-        var hours = service.CalculateHoursForShifts(shifts);
+        var hours = TipCalculator.CalculateHoursForShifts(shifts);
 
         hours.Should().Be(4.5m);
     }
@@ -40,7 +38,6 @@ public class WeeklyHoursCalculationTests
     [Fact]
     public void MultipleShifts_SumsCorrectly()
     {
-        var service = CreateService();
         var shifts = new[]
         {
             MakeShift(9, 0, 13, 0),
@@ -48,7 +45,7 @@ public class WeeklyHoursCalculationTests
             MakeShift(9, 0, 17, 0)
         };
 
-        var hours = service.CalculateHoursForShifts(shifts);
+        var hours = TipCalculator.CalculateHoursForShifts(shifts);
 
         hours.Should().Be(16m);
     }
@@ -56,9 +53,7 @@ public class WeeklyHoursCalculationTests
     [Fact]
     public void NoShifts_ZeroHours()
     {
-        var service = CreateService();
-
-        var hours = service.CalculateHoursForShifts([]);
+        var hours = TipCalculator.CalculateHoursForShifts([]);
 
         hours.Should().Be(0m);
     }
@@ -66,10 +61,9 @@ public class WeeklyHoursCalculationTests
     [Fact]
     public void EveningShift_CorrectHours()
     {
-        var service = CreateService();
         var shifts = new[] { MakeShift(16, 0, 23, 30) };
 
-        var hours = service.CalculateHoursForShifts(shifts);
+        var hours = TipCalculator.CalculateHoursForShifts(shifts);
 
         hours.Should().Be(7.5m);
     }
@@ -77,16 +71,10 @@ public class WeeklyHoursCalculationTests
     [Fact]
     public void ShiftWithOddMinutes_CalculatesCorrectly()
     {
-        var service = CreateService();
         var shifts = new[] { MakeShift(9, 15, 15, 45) };
 
-        var hours = service.CalculateHoursForShifts(shifts);
+        var hours = TipCalculator.CalculateHoursForShifts(shifts);
 
         hours.Should().Be(6.5m);
-    }
-
-    private static TipCalculationService CreateService()
-    {
-        return new TipCalculationService(null!);
     }
 }

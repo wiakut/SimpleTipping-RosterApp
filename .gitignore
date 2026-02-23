@@ -1,8 +1,6 @@
 # .NET
-backend/src/TippingApp.Api/bin/
-backend/src/TippingApp.Api/obj/
-backend/tests/TippingApp.Tests/bin/
-backend/tests/TippingApp.Tests/obj/
+backend/**/bin/
+backend/**/obj/
 
 # Node
 frontend/node_modules/

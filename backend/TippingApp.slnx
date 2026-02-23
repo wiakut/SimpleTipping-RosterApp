@@ -1,5 +1,8 @@
 <Solution>
   <Folder Name="/src/">
+    <Project Path="src/TippingApp.Domain/TippingApp.Domain.csproj" />
+    <Project Path="src/TippingApp.Application/TippingApp.Application.csproj" />
+    <Project Path="src/TippingApp.Infrastructure/TippingApp.Infrastructure.csproj" />
     <Project Path="src/TippingApp.Api/TippingApp.Api.csproj" />
   </Folder>
   <Folder Name="/tests/">

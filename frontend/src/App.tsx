@@ -18,6 +18,7 @@ import WeekNavigator from './components/WeekNavigator';
 import RosterTable from './components/RosterTable';
 import TipsSummary from './components/TipsSummary';
 import TipSplitTable from './components/TipSplitTable';
+import EmployeeManagement from './components/EmployeeManagement';
 import { employeesApi, shiftsApi, tipsApi, summaryApi } from './api/client';
 import type { Employee, Shift, TipEntry, WeeklySummary } from './types';
 
@@ -124,6 +125,12 @@ export default function App() {
           />
           <TipSplitTable summary={summary} />
         </Box>
+
+        <EmployeeManagement
+          employees={employees}
+          onRefresh={loadData}
+          onSnack={showSnack}
+        />
       </Container>
 
       <Snackbar

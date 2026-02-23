@@ -20,6 +20,11 @@ export interface ShiftCreate {
   endTime: string;
 }
 
+export interface EmployeeCreate {
+  name: string;
+  role: string;
+}
+
 export interface TipEntry {
   id: number;
   date: string;
