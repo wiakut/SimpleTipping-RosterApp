@@ -1,0 +1,22 @@
+# .NET
+backend/src/TippingApp.Api/bin/
+backend/src/TippingApp.Api/obj/
+backend/tests/TippingApp.Tests/bin/
+backend/tests/TippingApp.Tests/obj/
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# IDE
+.vs/
+.vscode/
+*.user
+*.suo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+.env
